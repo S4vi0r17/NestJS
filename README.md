@@ -48,6 +48,8 @@ docker pull postgres:14.3
 
 - [Better Dockerfile](https://marketplace.visualstudio.com/items?itemName=jeff-hykin.better-dockerfile-syntax)
 
+---
+
 > [!TIP]
 > Para cambiar los íconos de Angular por los íconos de Nest abrir el archivo settings.json y agregar la siguiente línea:
 >
