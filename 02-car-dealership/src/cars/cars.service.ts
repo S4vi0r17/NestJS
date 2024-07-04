@@ -1,22 +1,25 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { v4 as uuid } from 'uuid';
+import { Car } from './interfaces/car.interface';
+import { CreateCarDto, UpdateCarDto } from './dtos';
 
 @Injectable()
 export class CarsService {
-  private cars = [
+  private cars: Car[] = [
     {
-      id: 1,
+      id: uuid(),
       make: 'Toyota',
       model: 'Corolla',
       year: 2018,
     },
     {
-      id: 2,
+      id: uuid(),
       make: 'Toyota',
       model: 'Camry',
       year: 2019,
     },
     {
-      id: 3,
+      id: uuid(),
       make: 'Toyota',
       model: 'Prius',
       year: 2020,
@@ -27,7 +30,7 @@ export class CarsService {
     return this.cars;
   }
 
-  getCarById(carId: number) {
+  getCarById(carId: string) {
     const car = this.cars.find((car) => car.id === carId);
 
     if (!car) throw new NotFoundException(`Car with ID ${carId} not found`);
@@ -35,19 +38,44 @@ export class CarsService {
     return car;
   }
 
-  addCar(car) {
+  addCar(createCarDto: CreateCarDto) {
+    const car = {
+      id: uuid(),
+      ...createCarDto,
+    };
+
     this.cars.push(car);
+
     return this.cars;
   }
 
-  updateCar(carId: number, car) {
-    const index = this.cars.findIndex((car) => car.id === carId);
-    this.cars[index] = car;
+  updateCar(carId: string, updateCarDto: UpdateCarDto) {
+    const carDB = this.getCarById(carId);
+
+    if (updateCarDto.id && updateCarDto.id !== carId) {
+      throw new NotFoundException('Car ID cannot be changed');
+    }
+
+    this.cars = this.cars.map((c) => {
+      if (c.id === carId) {
+        return {
+          ...carDB,
+          ...updateCarDto,
+          carId,
+        };
+      }
+
+      return c;
+    });
+
     return this.cars;
   }
 
-  deleteCar(carId: number) {
+  deleteCar(carId: string) {
+    this.getCarById(carId);
+
     this.cars = this.cars.filter((car) => car.id !== carId);
+
     return this.cars;
   }
 }
