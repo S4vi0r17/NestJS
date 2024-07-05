@@ -6,21 +6,21 @@ import { Brand } from './entities/brand.entity';
 @Injectable()
 export class BrandsService {
   private brands: Brand[] = [
-    {
-      id: u(),
-      name: 'Brand 1',
-      createdAt: new Date(),
-    },
-    {
-      id: u(),
-      name: 'Brand 2',
-      createdAt: new Date(),
-    },
-    {
-      id: u(),
-      name: 'Brand 3',
-      createdAt: new Date(),
-    },
+    // {
+    //   id: u(),
+    //   name: 'Brand 1',
+    //   createdAt: new Date(),
+    // },
+    // {
+    //   id: u(),
+    //   name: 'Brand 2',
+    //   createdAt: new Date(),
+    // },
+    // {
+    //   id: u(),
+    //   name: 'Brand 3',
+    //   createdAt: new Date(),
+    // },
   ];
 
   create(createBrandDto: CreateBrandDto) {
