@@ -18,11 +18,11 @@ export class SeedService {
       const segments = url.split('/');
       const number = +segments[segments.length - 2];
 
-      console.log({ number, name });
+      // console.log({ number, name });
 
       this.pokemonService.create({ number, name });
     });
 
-    return data.results;
+    return 'Seed executed';
   }
 }
