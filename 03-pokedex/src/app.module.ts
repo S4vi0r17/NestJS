@@ -6,11 +6,13 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { CommonModule } from './common/common.module';
 import { SeedModule } from './seed/seed.module';
 import { ConfigModule } from '@nestjs/config';
+import { envConfig } from './config/app.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true, // Make the configuration global
+      // isGlobal: true, // Make the configuration global
+      load: [envConfig], // Load the configuration
     }),
 
     ServeStaticModule.forRoot({
@@ -29,8 +31,4 @@ import { ConfigModule } from '@nestjs/config';
   providers: [],
   exports: [],
 })
-export class AppModule {
-  constructor() {
-    console.log(process.env);
-  }
-}
+export class AppModule {}
