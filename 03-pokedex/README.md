@@ -63,3 +63,6 @@ Heroku redeploy sin cambios:
 git commit --allow-empty -m "Tigger Heroku deploy"
 git push heroku <master|main>
 ```
+
+# Referencias
+https://gist.github.com/Klerith/e7861738c93712840ab3a38674843490
