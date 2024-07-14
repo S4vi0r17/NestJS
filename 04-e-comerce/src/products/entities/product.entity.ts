@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Product {
@@ -11,7 +11,7 @@ export class Product {
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  @Column('numeric', { precision: 5, scale: 2, default: 0 })
+  @Column('float', { default: 0 })
   price: number;
 
   @Column('text', { unique: true })
@@ -25,4 +25,13 @@ export class Product {
 
   @Column('text')
   gender: string;
+
+  @BeforeInsert()
+  generateSlug() {
+    if (!this.slug) {
+      this.slug = this.name.toLowerCase().replace(/ /g, '-').replace(/'/g, '');
+    }
+
+    this.slug = this.slug.toLowerCase().replace(/ /g, '-').replace(/'/g, '');
+  }
 }
