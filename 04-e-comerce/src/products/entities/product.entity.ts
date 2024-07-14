@@ -7,8 +7,22 @@ export class Product {
 
   @Column('text', { unique: true })
   name: string;
+
+  @Column({ type: 'text', nullable: true })
   description: string;
+
+  @Column('numeric', { precision: 5, scale: 2, default: 0 })
   price: number;
+
+  @Column('text', { unique: true })
+  slug: string;
+
+  @Column('int', { default: 0 })
   stock: number;
-  image: string;
+
+  @Column('text', { array: true })
+  sizes: string[];
+
+  @Column('text')
+  gender: string;
 }
