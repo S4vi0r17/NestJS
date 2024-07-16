@@ -59,7 +59,13 @@ export class ProductsService {
     }
 
     if (!product) {
-      product = await this.productRepository.findOneBy({ slug: term });
+      const queryBuilder = this.productRepository.createQueryBuilder();
+      product = await queryBuilder
+        .where(`UPPER(name)=:name OR slug=:slug`, {
+          name: term.toUpperCase(),
+          slug: term.toUpperCase(),
+        })
+        .getOne();
     }
 
     if (!product) {
