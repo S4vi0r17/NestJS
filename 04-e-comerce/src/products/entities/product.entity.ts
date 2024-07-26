@@ -3,8 +3,10 @@ import {
   BeforeUpdate,
   Column,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { ProductImage } from './product-image.entity';
 
 @Entity()
 export class Product {
@@ -34,6 +36,12 @@ export class Product {
 
   @Column('text', { array: true, default: [] })
   tags: string[];
+
+  @OneToMany(() => ProductImage, (productImage) => productImage.product, {
+    cascade: true, // cascade: true specifies that when a Product entity is saved, updated, or removed, the associated ProductImage entities should be automatically saved, updated, or removed.
+    eager: true, // eager: true specifies that the associated ProductImage entities should be automatically loaded when querying for a Product entity.
+  })
+  images?: ProductImage[];
 
   @BeforeInsert()
   setSlug() {
