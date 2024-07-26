@@ -86,12 +86,13 @@ export class ProductsService {
     }
 
     if (!product) {
-      const queryBuilder = this.productRepository.createQueryBuilder();
+      const queryBuilder = this.productRepository.createQueryBuilder('product');
       product = await queryBuilder
         .where(`UPPER(name)=:name OR slug=:slug`, {
           name: term.toUpperCase(),
-          slug: term.toUpperCase(),
+          slug: term.toLowerCase(),
         })
+        .leftJoinAndSelect('product.images', 'images')
         .getOne();
     }
 
