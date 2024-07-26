@@ -164,4 +164,15 @@ export class ProductsService {
       throw new InternalServerErrorException();
     }
   }
+
+  async deleteAllProducts() {
+    // await this.productRepository.delete({});
+    const query = this.productRepository.createQueryBuilder('product');
+    try {
+      // return await query.delete().execute();
+      return await query.delete().where({}).execute();
+    } catch (error) {
+      this.handleDBException(error);
+    }
+  }
 }
