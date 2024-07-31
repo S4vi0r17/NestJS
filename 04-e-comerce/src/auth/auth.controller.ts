@@ -5,7 +5,7 @@ import {
   Headers,
   Post,
   Req,
-  SetMetadata,
+  // SetMetadata,
   UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
@@ -17,7 +17,9 @@ import { User } from './entities/user.entity';
 import { GetUser } from './decorators/get-user.decorator';
 import { RawHeaders } from './decorators/raw-headers.decorator';
 import { IncomingHttpHeaders } from 'http';
-import { UserRoleGuard } from './guards/user-role/user-role.guard';
+import { UserRoleGuard } from './guards/user-role.guard';
+import { RoleProtected } from './decorators/role-protected.decorator';
+import { ValidRoles } from './interfaces/valid-roles.enum';
 
 @Controller('auth')
 export class AuthController {
@@ -54,9 +56,21 @@ export class AuthController {
   }
 
   @Get('private2')
-  @SetMetadata('roles', ['admin'])
+  // @SetMetadata('roles', ['admin'])
+  @RoleProtected(ValidRoles.SUPERUSER, ValidRoles.ADMIN)
   @UseGuards(AuthGuard(), UserRoleGuard)
   privateRoute2(@GetUser() user: User) {
+    return {
+      message: 'This is a private route 2',
+      user,
+    };
+  }
+
+  @Get('private3')
+  // // @SetMetadata('roles', ['admin'])
+  // @RoleProtected(ValidRoles.SUPERUSER, ValidRoles.ADMIN)
+  // @UseGuards(AuthGuard(), UserRoleGuard)
+  privateRoute3(@GetUser() user: User) {
     return {
       message: 'This is a private route 2',
       user,
