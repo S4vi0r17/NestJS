@@ -7,23 +7,22 @@
 </p>
 
 - [Visual Studio Code](https://code.visualstudio.com/)
-
 - [Postman](https://www.postman.com/downloads/)
 
 Opcional
 
 - [Table Plus](https://tableplus.com/)
-
 - [Git](https://git-scm.com/)
 
-```
+```bash
 git config --global user.name "Tu nombre"
 git config --global user.email "Tu correo"
 ```
 
 - [Node](https://nodejs.org/es/)
 
-```opcional - Yarn
+```bash
+# opcional - Yarn
 npm install --global yarn
 ```
 
@@ -31,7 +30,7 @@ npm install --global yarn
 
 Descargar imagen de Mongo 5.0.0 y postgres 14
 
-```
+```bash
 docker pull mongo:5.0.0
 docker pull postgres:14.3
 ```
@@ -39,13 +38,9 @@ docker pull postgres:14.3
 ### Instalaciones adicionales
 
 - [Paste JSON as Code](https://marketplace.visualstudio.com/items?itemName=quicktype.quicktype)
-
 - [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
-
 - [TypeScript importer](https://marketplace.visualstudio.com/items?itemName=pmneo.tsimporter)
-
 - [.env](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)
-
 - [Better Dockerfile](https://marketplace.visualstudio.com/items?itemName=jeff-hykin.better-dockerfile-syntax)
 
 ---
@@ -54,5 +49,12 @@ docker pull postgres:14.3
 > Para cambiar los íconos de Angular por los íconos de Nest abrir el archivo settings.json y agregar la siguiente línea:
 >
 > ```json
-> "material-icon-theme.activeIconPack": "nest",
+> "material-icon-theme.activeIconPack": "nest"
 > ```
+
+### Desactivar Prettier
+
+```bash
+npm remove prettier
+npm remove eslint-config-prettier eslint-plugin-prettier
+```
