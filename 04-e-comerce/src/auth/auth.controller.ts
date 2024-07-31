@@ -20,6 +20,7 @@ import { IncomingHttpHeaders } from 'http';
 import { UserRoleGuard } from './guards/user-role.guard';
 import { RoleProtected } from './decorators/role-protected.decorator';
 import { ValidRoles } from './interfaces/valid-roles.enum';
+import { Auth } from './decorators/auth.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -70,6 +71,7 @@ export class AuthController {
   // // @SetMetadata('roles', ['admin'])
   // @RoleProtected(ValidRoles.SUPERUSER, ValidRoles.ADMIN)
   // @UseGuards(AuthGuard(), UserRoleGuard)
+  @Auth(ValidRoles.SUPERUSER)
   privateRoute3(@GetUser() user: User) {
     return {
       message: 'This is a private route 2',
