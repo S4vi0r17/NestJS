@@ -75,4 +75,11 @@ export class AuthService {
     console.log(error);
     throw new InternalServerErrorException('Something went wrong');
   }
+
+  checkAuthStatus(user: User) {
+    return {
+      ...user,
+      token: this.getJwtToken({ id: user.id }),
+    };
+  }
 }
