@@ -46,7 +46,7 @@ docker pull postgres:14.3
 ---
 
 > [!TIP]
-> Para cambiar los íconos de Angular por los íconos de Nest abrir el archivo settings.json y agregar la siguiente línea:
+> Para cambiar los íconos de Angular por los íconos de NestJS en Visual Studio Code usando la extensión Material Icon Theme, abre el archivo `settings.json` y agrega la siguiente línea:
 >
 > ```json
 > "material-icon-theme.activeIconPack": "nest"
