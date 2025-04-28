@@ -1,23 +1,23 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { v4 as u } from 'uuid';
-import { CreateBrandDto, UpdateBrandDto } from './dto';
+import { v4 as uuid } from 'uuid';
 import { Brand } from './entities/brand.entity';
+import { CreateBrandDto, UpdateBrandDto } from './dto';
 
 @Injectable()
 export class BrandsService {
   private brands: Brand[] = [
     // {
-    //   id: u(),
+    //   id: uuid(),
     //   name: 'Brand 1',
     //   createdAt: new Date(),
     // },
     // {
-    //   id: u(),
+    //   id: uuid(),
     //   name: 'Brand 2',
     //   createdAt: new Date(),
     // },
     // {
-    //   id: u(),
+    //   id: uuid(),
     //   name: 'Brand 3',
     //   createdAt: new Date(),
     // },
@@ -25,7 +25,7 @@ export class BrandsService {
 
   create(createBrandDto: CreateBrandDto) {
     const brand: Brand = {
-      id: u(),
+      id: uuid(),
       name: createBrandDto.name,
       createdAt: new Date(),
     };
