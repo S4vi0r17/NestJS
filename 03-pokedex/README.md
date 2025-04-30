@@ -24,14 +24,14 @@ API REST para la gestión de Pokémons, construida con [NestJS](https://nestjs.c
 
 Sigue estos pasos en orden para poner en marcha el proyecto:
 
-1. **Instala Nest CLI (si no lo tienes):**
-   ```bash
-   npm i -g @nestjs/cli
-   ```
-2. **Clona el repositorio:**
+1. **Clona el repositorio:**
    ```bash
    git clone https://github.com/S4vi0r17/NestJS.git
    cd NestJS/03-pokedex
+   ```
+2. **Instala Nest CLI (si no lo tienes):**
+   ```bash
+   npm i -g @nestjs/cli
    ```
 3. **Instala las dependencias:**
    ```bash
@@ -39,18 +39,20 @@ Sigue estos pasos en orden para poner en marcha el proyecto:
    # o
    npm install
    ```
-4. **Arranca la base de datos MongoDB con Docker:**
+4. **Crea un archivo `.env` basado en `.env.example`:**
+   Asegúrate de copiar el archivo `.env.example` y renómbralo como `.env`. Las variables de entorno serán validadas utilizando Joi para garantizar su correcta configuración.
+5. **Arranca la base de datos MongoDB con Docker:**
    ```bash
    docker-compose up -d
    ```
    Esto levantará un contenedor de MongoDB accesible en `mongodb://localhost:27017/nest-pokemon`.
-5. **Inicia el servidor de desarrollo NestJS:**
+6. **Inicia el servidor de desarrollo NestJS:**
    ```bash
    yarn start:dev
    # o
    npm run start:dev
    ```
-6. **(Opcional) Rellena la base de datos con la semilla:**
+7. **(Opcional) Rellena la base de datos con la semilla:**
    - Abre en tu navegador: [http://localhost:3000/api/v2/seed](http://localhost:3000/api/v2/seed)
    - Esto descargará y almacenará los primeros 650 Pokémons desde la PokéAPI.
 
