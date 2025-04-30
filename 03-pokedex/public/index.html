@@ -5,41 +5,312 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Comandos Útiles para Nest.js</title>
     <link rel="stylesheet" href="./css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
-      <img
-        src="https://docs.nestjs.com/assets/logo-small.svg"
-        alt="Nest.js Logo"
-        class="logo"
-      />
+      <div class="logo-container">
+        <img
+          src="https://docs.nestjs.com/assets/logo-small.svg"
+          alt="Nest.js Logo"
+          class="logo"
+        />
+      </div>
       <h1>Comandos Útiles para Nest.js</h1>
       <ul>
-        <li>
+        <li class="li-copy-wrap">
           <strong>Instalar Nest.js CLI:</strong>
+          <button class="copy-btn" title="Copiar" onclick="copyCode(this)">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path
+                d="M4.5 4.5V3.75C4.5 2.7835 5.2835 2 6.25 2H12.25C13.2165 2 14 2.7835 14 3.75V9.75C14 10.7165 13.2165 11.5 12.25 11.5H11.5"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="2"
+                y="6.5"
+                width="7.5"
+                height="7.5"
+                rx="1.25"
+                stroke="currentColor"
+                stroke-width="1.2"
+              />
+            </svg>
+            Copiar
+          </button>
           <pre><code>npm i -g @nestjs/cli</code></pre>
         </li>
-        <li>
+        <li class="li-copy-wrap">
           <strong>Crear un nuevo proyecto:</strong>
+          <button class="copy-btn" title="Copiar" onclick="copyCode(this)">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path
+                d="M4.5 4.5V3.75C4.5 2.7835 5.2835 2 6.25 2H12.25C13.2165 2 14 2.7835 14 3.75V9.75C14 10.7165 13.2165 11.5 12.25 11.5H11.5"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="2"
+                y="6.5"
+                width="7.5"
+                height="7.5"
+                rx="1.25"
+                stroke="currentColor"
+                stroke-width="1.2"
+              />
+            </svg>
+            Copiar
+          </button>
           <pre><code>nest new nombre-del-proyecto</code></pre>
         </li>
-        <li>
+        <li class="li-copy-wrap">
           <strong>Iniciar el servidor de desarrollo:</strong>
+          <button class="copy-btn" title="Copiar" onclick="copyCode(this)">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path
+                d="M4.5 4.5V3.75C4.5 2.7835 5.2835 2 6.25 2H12.25C13.2165 2 14 2.7835 14 3.75V9.75C14 10.7165 13.2165 11.5 12.25 11.5H11.5"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="2"
+                y="6.5"
+                width="7.5"
+                height="7.5"
+                rx="1.25"
+                stroke="currentColor"
+                stroke-width="1.2"
+              />
+            </svg>
+            Copiar
+          </button>
           <pre><code>npm run start:dev</code></pre>
         </li>
-        <li>
+        <li class="li-copy-wrap">
           <strong>Crear un nuevo módulo:</strong>
+          <button class="copy-btn" title="Copiar" onclick="copyCode(this)">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path
+                d="M4.5 4.5V3.75C4.5 2.7835 5.2835 2 6.25 2H12.25C13.2165 2 14 2.7835 14 3.75V9.75C14 10.7165 13.2165 11.5 12.25 11.5H11.5"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="2"
+                y="6.5"
+                width="7.5"
+                height="7.5"
+                rx="1.25"
+                stroke="currentColor"
+                stroke-width="1.2"
+              />
+            </svg>
+            Copiar
+          </button>
           <pre><code>nest generate module nombre-del-modulo</code></pre>
         </li>
-        <li>
+        <li class="li-copy-wrap">
           <strong>Crear un nuevo controlador:</strong>
+          <button class="copy-btn" title="Copiar" onclick="copyCode(this)">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path
+                d="M4.5 4.5V3.75C4.5 2.7835 5.2835 2 6.25 2H12.25C13.2165 2 14 2.7835 14 3.75V9.75C14 10.7165 13.2165 11.5 12.25 11.5H11.5"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="2"
+                y="6.5"
+                width="7.5"
+                height="7.5"
+                rx="1.25"
+                stroke="currentColor"
+                stroke-width="1.2"
+              />
+            </svg>
+            Copiar
+          </button>
           <pre><code>nest generate controller nombre-del-controlador</code></pre>
         </li>
-        <li>
+        <li class="li-copy-wrap">
           <strong>Crear un nuevo servicio:</strong>
+          <button class="copy-btn" title="Copiar" onclick="copyCode(this)">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path
+                d="M4.5 4.5V3.75C4.5 2.7835 5.2835 2 6.25 2H12.25C13.2165 2 14 2.7835 14 3.75V9.75C14 10.7165 13.2165 11.5 12.25 11.5H11.5"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="2"
+                y="6.5"
+                width="7.5"
+                height="7.5"
+                rx="1.25"
+                stroke="currentColor"
+                stroke-width="1.2"
+              />
+            </svg>
+            Copiar
+          </button>
           <pre><code>nest generate service nombre-del-servicio</code></pre>
         </li>
+        <li class="li-copy-wrap">
+          <strong>Crear un nuevo guard:</strong>
+          <button class="copy-btn" title="Copiar" onclick="copyCode(this)">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path
+                d="M4.5 4.5V3.75C4.5 2.7835 5.2835 2 6.25 2H12.25C13.2165 2 14 2.7835 14 3.75V9.75C14 10.7165 13.2165 11.5 12.25 11.5H11.5"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="2"
+                y="6.5"
+                width="7.5"
+                height="7.5"
+                rx="1.25"
+                stroke="currentColor"
+                stroke-width="1.2"
+              />
+            </svg>
+            Copiar
+          </button>
+          <pre><code>nest generate guard nombre-del-guard</code></pre>
+        </li>
+        <li class="li-copy-wrap">
+          <strong>Crear un nuevo interceptor:</strong>
+          <button class="copy-btn" title="Copiar" onclick="copyCode(this)">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path
+                d="M4.5 4.5V3.75C4.5 2.7835 5.2835 2 6.25 2H12.25C13.2165 2 14 2.7835 14 3.75V9.75C14 10.7165 13.2165 11.5 12.25 11.5H11.5"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="2"
+                y="6.5"
+                width="7.5"
+                height="7.5"
+                rx="1.25"
+                stroke="currentColor"
+                stroke-width="1.2"
+              />
+            </svg>
+            Copiar
+          </button>
+          <pre><code>nest generate interceptor nombre-del-interceptor</code></pre>
+        </li>
+        <li class="li-copy-wrap">
+          <strong>Crear un nuevo pipe:</strong>
+          <button class="copy-btn" title="Copiar" onclick="copyCode(this)">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path
+                d="M4.5 4.5V3.75C4.5 2.7835 5.2835 2 6.25 2H12.25C13.2165 2 14 2.7835 14 3.75V9.75C14 10.7165 13.2165 11.5 12.25 11.5H11.5"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="2"
+                y="6.5"
+                width="7.5"
+                height="7.5"
+                rx="1.25"
+                stroke="currentColor"
+                stroke-width="1.2"
+              />
+            </svg>
+            Copiar
+          </button>
+          <pre><code>nest generate pipe nombre-del-pipe</code></pre>
+        </li>
+        <li class="li-copy-wrap">
+          <strong>Crear un nuevo filter:</strong>
+          <button class="copy-btn" title="Copiar" onclick="copyCode(this)">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path
+                d="M4.5 4.5V3.75C4.5 2.7835 5.2835 2 6.25 2H12.25C13.2165 2 14 2.7835 14 3.75V9.75C14 10.7165 13.2165 11.5 12.25 11.5H11.5"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="2"
+                y="6.5"
+                width="7.5"
+                height="7.5"
+                rx="1.25"
+                stroke="currentColor"
+                stroke-width="1.2"
+              />
+            </svg>
+            Copiar
+          </button>
+          <pre><code>nest generate filter nombre-del-filter</code></pre>
+        </li>
+        <li class="li-copy-wrap">
+          <strong>Crear un nuevo decorator:</strong>
+          <button class="copy-btn" title="Copiar" onclick="copyCode(this)">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path
+                d="M4.5 4.5V3.75C4.5 2.7835 5.2835 2 6.25 2H12.25C13.2165 2 14 2.7835 14 3.75V9.75C14 10.7165 13.2165 11.5 12.25 11.5H11.5"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="2"
+                y="6.5"
+                width="7.5"
+                height="7.5"
+                rx="1.25"
+                stroke="currentColor"
+                stroke-width="1.2"
+              />
+            </svg>
+            Copiar
+          </button>
+          <pre><code>nest generate decorator nombre-del-decorator</code></pre>
+        </li>
       </ul>
+      <script>
+        function copyCode(btn) {
+          const pre = btn.parentElement.querySelector('pre code');
+          const text = pre.innerText;
+          navigator.clipboard.writeText(text).then(() => {
+            btn.classList.add('copied');
+            btn.innerHTML = `<svg viewBox='0 0 16 16' fill='none'><path d='M6.5 8.5L8.5 10.5L12 7' stroke='currentColor' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/><rect x='2' y='6.5' width='7.5' height='7.5' rx='1.25' stroke='currentColor' stroke-width='1.2'/></svg> Copiado!`;
+            setTimeout(() => {
+              btn.classList.remove('copied');
+              btn.innerHTML = `<svg viewBox='0 0 16 16' fill='none'><path d='M4.5 4.5V3.75C4.5 2.7835 5.2835 2 6.25 2H12.25C13.2165 2 14 2.7835 14 3.75V9.75C14 10.7165 13.2165 11.5 12.25 11.5H11.5' stroke='currentColor' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/><rect x='2' y='6.5' width='7.5' height='7.5' rx='1.25' stroke='currentColor' stroke-width='1.2'/></svg> Copiar`;
+            }, 1200);
+          });
+        }
+      </script>
     </div>
   </body>
 </html>
