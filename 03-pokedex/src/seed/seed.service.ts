@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { PokeapiResponse } from './interfaces/pokeapi-response.interface';
+import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Pokemon, PokemonDocument } from 'src/pokemons/entities/pokemon.entity';
-import { InjectModel } from '@nestjs/mongoose';
 import { AxiosAdapter } from 'src/common/adapters/axios.adapter';
+import { PokeapiResponse } from './interfaces/pokeapi-response.interface';
 
 @Injectable()
 export class SeedService {
