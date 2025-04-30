@@ -1,155 +1,111 @@
-# Guía de Docker Compose para MongoDB en este proyecto
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+</p>
+
+# Pokédex API NestJS
+
+API REST para la gestión de Pokémons, construida con [NestJS](https://nestjs.com/) y [MongoDB](https://www.mongodb.com/). Permite operaciones CRUD sobre una colección de Pokémons y la carga masiva desde la PokéAPI.
 
 ---
 
-## 1. ¿Qué significa `version: '3.8'`?
+## Características principales
 
-La línea `version: '3.8'` en el archivo `docker-compose.yml` indica la versión del formato de archivo que Docker Compose usará para interpretar el archivo.  
-**En versiones modernas de Docker Compose, esta línea es opcional y puede eliminarse**; Docker detecta automáticamente la versión adecuada.
-
----
-
-## ¿Por qué a veces no se crea la base de datos inicial?
-
-La variable `MONGO_INITDB_DATABASE` **solo crea la base de datos si también defines un usuario inicial** usando `MONGO_INITDB_ROOT_USERNAME` y `MONGO_INITDB_ROOT_PASSWORD` (o `MONGO_INITDB_USERNAME` y `MONGO_INITDB_PASSWORD`).
-
-- Si no defines un usuario, MongoDB arranca sin crear la base de datos; la base se crea automáticamente **cuando insertas el primer dato**.
-- Si defines usuario y contraseña, la base de datos indicada en `MONGO_INITDB_DATABASE` se crea al iniciar el contenedor.
-
-**Resumen:**
-- La base de datos aparece cuando insertas datos o si creas un usuario inicial.
-- La variable sola no la crea visible al arrancar.
+- CRUD completo de Pokémons (`/api/v2/pokemons`)
+- Paginación en consultas
+- Validaciones robustas con DTOs y pipes personalizados
+- Adaptador HTTP para consumo externo de APIs
+- Endpoint de semilla para poblar la base de datos desde PokéAPI
+- Uso de Mongoose para modelado de datos
+- Docker Compose para base de datos MongoDB
 
 ---
 
-## 2. ¿Qué representa el nombre `mongo` bajo `services:`?
+## Instalación y ejecución
 
-El nombre `mongo` es el identificador lógico del servicio de MongoDB dentro de Docker Compose.  
-Sirve para:
-- Referenciar el contenedor desde otros servicios (por ejemplo, para dependencias).
-- Identificar el contenedor en comandos y logs.
+Sigue estos pasos en orden para poner en marcha el proyecto:
+
+1. **Instala Nest CLI (si no lo tienes):**
+   ```bash
+   npm i -g @nestjs/cli
+   ```
+2. **Clona el repositorio:**
+   ```bash
+   git clone https://github.com/S4vi0r17/NestJS.git
+   cd NestJS/03-pokedex
+   ```
+3. **Instala las dependencias:**
+   ```bash
+   yarn install
+   # o
+   npm install
+   ```
+4. **Arranca la base de datos MongoDB con Docker:**
+   ```bash
+   docker-compose up -d
+   ```
+   Esto levantará un contenedor de MongoDB accesible en `mongodb://localhost:27017/nest-pokemon`.
+5. **Inicia el servidor de desarrollo NestJS:**
+   ```bash
+   yarn start:dev
+   # o
+   npm run start:dev
+   ```
+6. **(Opcional) Rellena la base de datos con la semilla:**
+   - Abre en tu navegador: [http://localhost:3000/api/v2/seed](http://localhost:3000/api/v2/seed)
+   - Esto descargará y almacenará los primeros 650 Pokémons desde la PokéAPI.
 
 ---
 
-## 3. ¿Qué poner en `environment:` y por qué?
+## Endpoints principales
 
-La sección `environment:` define variables de entorno que el contenedor usará al iniciar.  
-Para MongoDB, lo más común es establecer el usuario, contraseña y base de datos inicial:
+- **GET `/api/v2/pokemons`**: Lista Pokémons (soporta paginación: `limit`, `offset`)
+- **GET `/api/v2/pokemons/:term`**: Busca por nombre, número o id
+- **POST `/api/v2/pokemons`**: Crea un nuevo Pokémon
+- **PATCH `/api/v2/pokemons/:term`**: Actualiza un Pokémon por nombre, número o id
+- **DELETE `/api/v2/pokemons/:id`**: Elimina un Pokémon por id
+- **GET `/api/v2/seed`**: Pobla la base de datos con datos de PokéAPI
 
-```yaml
-environment:
-  MONGO_INITDB_ROOT_USERNAME: admin
-  MONGO_INITDB_ROOT_PASSWORD: admin123
-  MONGO_INITDB_DATABASE: pokedex
+---
+
+## Estructura y componentes relevantes
+
+- **Adaptador HTTP**: `AxiosAdapter` en `src/common/adapters/axios.adapter.ts` para consumo externo de APIs.
+- **Pipe personalizado**: `ParseMongoIdPipe` en `src/common/pipes/parse-mongo-id.pipe.ts` para validar IDs de MongoDB.
+- **DTOs**: Validan y transforman datos de entrada (`src/pokemons/dto/`).
+- **Entidad Pokémon**: Definición del modelo en `src/pokemons/entities/pokemon.entity.ts`.
+- **Módulo de semilla**: Permite poblar la base de datos desde PokéAPI (`src/seed/`).
+
+---
+
+## Stack usado
+
+- NestJS
+- MongoDB
+- Mongoose
+- Docker (para base de datos)
+- Axios
+- class-validator / class-transformer
+
+---
+
+## Notas adicionales
+
+- El prefijo global de la API es `/api/v2`.
+- La base de datos por defecto es `nest-pokemon` (ver `docker-compose.yml`).
+- Puedes consultar la guía `docker.md` para dudas sobre Docker y MongoDB.
+
+---
+
+## Ejemplo de petición para crear un Pokémon
+
+```json
+POST /api/v2/pokemons
+{
+  "name": "bulbasaur",
+  "number": 1
+}
 ```
 
-- `MONGO_INITDB_ROOT_USERNAME` y `MONGO_INITDB_ROOT_PASSWORD`: crean un usuario administrador.
-- `MONGO_INITDB_DATABASE`: crea una base de datos inicial al arrancar el contenedor.
-
-> **Nota:** La variable correcta es `MONGO_INITDB_DATABASE`, no `MONGODB_DATABASE`.
-
 ---
 
-## 4. ¿Qué hace la opción `restart:`?
-
-La opción `restart: always` le indica a Docker que reinicie automáticamente el contenedor si se detiene inesperadamente (por error o reinicio del sistema), excepto si lo detienes manualmente.
-
----
-
-## 5. ¿Para qué sirve la sección `volumes:`?
-
-La sección `volumes:` sirve para **persistir los datos** generados por el contenedor, incluso si el contenedor se elimina o reinicia.  
-Ejemplo:
-
-```yaml
-volumes:
-  - mongo_data:/data/db
-```
-
-Esto guarda los datos de MongoDB en un volumen llamado `mongo_data` en tu máquina, evitando la pérdida de información.
-
----
-
-## 6. Diferencia entre `mongo_data:/data/db` y `./mongo_data:/data/db`
-
-- `mongo_data:/data/db`:  
-  Usa un **named volume** administrado por Docker. Es más aislado, portable y recomendado para producción. Docker gestiona la ubicación del volumen.
-- `./mongo_data:/data/db`:  
-  Usa una **carpeta local** de tu máquina (bind mount). Es útil para desarrollo porque puedes ver y editar los archivos directamente desde tu sistema operativo.
-
-**No es necesario usar ambos a la vez; elige uno según tus necesidades.**
-
----
-
-## 7. ¿Para qué sirve el bloque `volumes:` al final del archivo?
-
-El bloque `volumes:` al final del archivo `docker-compose.yml` declara los **named volumes** que usas en los servicios.  
-Ejemplo:
-
-```yaml
-volumes:
-  mongo_data:
-```
-
-- Si usas `mongo_data:/data/db` en tu servicio, Docker buscará este volumen declarado.
-- Si usas solo rutas locales (`./mongo_data:/data/db`), este bloque no es necesario.
-- Declarar los volúmenes explícitamente es buena práctica para mayor claridad y portabilidad.
-
----
-
-## 8. ¿Es obligatorio el nombre `mongo_data`?
-
-No, puedes usar cualquier nombre de volumen.  
-Solo asegúrate de ser consistente en el archivo: el nombre debe coincidir en la sección del servicio y en la declaración al final.
-
----
-
-## 9. Solución a error de conexión con Docker
-
-Si ves un error como:
-
-```
-unable to get image 'mongo:5': error during connect: ... open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
-```
-
-Significa que Docker Desktop no está corriendo.  
-**Solución:**
-- Abre Docker Desktop y espera a que esté en estado "running".
-- Luego ejecuta de nuevo `docker compose up -d`.
-
----
-
-## 10. ¿Qué versión poner en Docker Compose?
-
-No es necesario especificar la versión (`version:`) en archivos modernos.  
-Puedes eliminar esa línea y Docker Compose detectará la versión adecuada automáticamente.
-
----
-
-## 11. Resumen visual de un archivo `docker-compose.yml` típico para MongoDB
-
-```yaml
-services:
-  mongo:
-    image: mongo:5
-    restart: always
-    ports:
-      - "27017:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: admin123
-      MONGO_INITDB_DATABASE: pokedex
-    volumes:
-      - mongo_data:/data/db
-
-volumes:
-  mongo_data:
-```
-
-- Para desarrollo, puedes cambiar `mongo_data:/data/db` por `./mongo_data:/data/db` si prefieres ver los archivos en tu sistema.
-- El bloque `volumes:` al final solo es necesario si usas named volumes.
-
----
-
-> Si tienes dudas sobre cómo adaptar tu archivo `docker-compose.yml` para MongoDB, consulta esta guía o revisa la [documentación oficial de Docker Compose](https://docs.docker.com/compose/compose-file/).
-
+> Proyecto educativo para practicar NestJS, MongoDB y buenas prácticas de APIs REST.
