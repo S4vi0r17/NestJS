@@ -1,13 +1,15 @@
 import { Module } from '@nestjs/common';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
-import { PokemonsModule } from './pokemons/pokemons.module';
-import { MongooseModule } from '@nestjs/mongoose';
-import { CommonModule } from './common/common.module';
-import { SeedModule } from './seed/seed.module';
 import { ConfigModule } from '@nestjs/config';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { MongooseModule } from '@nestjs/mongoose';
+import { join } from 'path';
+
 import { EnvConfig } from './config/env.config';
 import { JoiValidationSchema } from './config/joi.validation';
+
+import { PokemonsModule } from './pokemons/pokemons.module';
+import { CommonModule } from './common/common.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -23,7 +25,9 @@ import { JoiValidationSchema } from './config/joi.validation';
       serveRoot: '/public', // "/" is the default
     }),
 
-    MongooseModule.forRoot('mongodb://localhost:27017/nest-pokemon'),
+    MongooseModule.forRoot(process.env.MONGODB_URI as string, {
+      dbName: process.env.MONGODB_DB_NAME,
+    }),
 
     PokemonsModule,
 
@@ -34,8 +38,4 @@ import { JoiValidationSchema } from './config/joi.validation';
   controllers: [],
   providers: [],
 })
-export class AppModule {
-  constructor() {
-    console.log(process.env.MONGODB_URI);
-  }
-}
+export class AppModule {}
