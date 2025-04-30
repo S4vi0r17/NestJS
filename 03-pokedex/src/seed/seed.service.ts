@@ -1,14 +1,14 @@
-import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { PokeapiResponse } from './interfaces/pokeapi-response.interface';
 import { Model } from 'mongoose';
 import { Pokemon, PokemonDocument } from 'src/pokemons/entities/pokemon.entity';
 import { InjectModel } from '@nestjs/mongoose';
+import { AxiosAdapter } from 'src/common/adapters/axios.adapter';
 
 @Injectable()
 export class SeedService {
   constructor(
-    private readonly httpService: HttpService,
+    private readonly httpService: AxiosAdapter,
     @InjectModel(Pokemon.name)
     private readonly pokemonModel: Model<PokemonDocument>,
   ) {}
@@ -19,7 +19,7 @@ export class SeedService {
     // await this.pokemonModel.collection.dropIndex('no_1');
     await this.pokemonModel.deleteMany({}).exec();
 
-    const { data } = await this.httpService.axiosRef.get<PokeapiResponse>(
+    const data = await this.httpService.get<PokeapiResponse>(
       'https://pokeapi.co/api/v2/pokemon?limit=650',
     );
 
