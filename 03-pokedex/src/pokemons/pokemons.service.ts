@@ -1,14 +1,15 @@
 import {
-  BadRequestException,
   Injectable,
-  InternalServerErrorException,
+  BadRequestException,
   NotFoundException,
+  InternalServerErrorException,
 } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model, isValidObjectId } from 'mongoose';
+import { Pokemon, PokemonDocument } from './entities/pokemon.entity';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
-import { isValidObjectId, Model } from 'mongoose';
-import { Pokemon, PokemonDocument } from './entities/pokemon.entity';
-import { InjectModel } from '@nestjs/mongoose';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Injectable()
 export class PokemonsService {
@@ -28,8 +29,15 @@ export class PokemonsService {
     }
   }
 
-  findAll() {
-    return `This action returns all pokemons`;
+  findAll(paginationDto: PaginationDto) {
+    const { limit = 10, offset = 0 } = paginationDto;
+
+    return this.pokemonModel
+      .find({})
+      .skip(offset)
+      .limit(limit)
+      .sort({ number: 1 })
+      .select('-__v');
   }
 
   async findOne(term: string) {
@@ -37,7 +45,7 @@ export class PokemonsService {
 
     // Si `term` es un número válido y no negativo
     if (!isNaN(+term) && +term > 0) {
-      pokemon = await this.pokemonModel.findOne({ no: term });
+      pokemon = await this.pokemonModel.findOne({ number: term });
     }
 
     // MongoID
@@ -54,7 +62,7 @@ export class PokemonsService {
 
     if (!pokemon) {
       throw new NotFoundException(
-        `Pokemon with id, name or no "${term}" not found`,
+        `Pokemon with id, name or number "${term}" not found`,
       );
     }
 
