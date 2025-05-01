@@ -4,6 +4,7 @@
 /build
 
 /mongo_data
+.env.prod
 
 # Logs
 logs

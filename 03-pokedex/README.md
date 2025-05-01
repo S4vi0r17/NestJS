@@ -58,6 +58,33 @@ Sigue estos pasos en orden para poner en marcha el proyecto:
 
 ---
 
+## Despliegue y build de producción
+
+Sigue estos pasos para construir y ejecutar la aplicación en modo producción usando Docker:
+
+1. **Construye la imagen de producción:**
+   ```bash
+   docker build -t pokedex-nestjs:prod -f Dockerfile .
+   ```
+   - **Parámetros:**
+     - `-t pokedex-nestjs:prod`: Asigna la etiqueta `pokedex-nestjs:prod` a la imagen.
+     - `-f Dockerfile`: Usa el archivo `Dockerfile` para la construcción.
+     - `.`: Contexto de build (directorio actual).
+2. **(Opcional) Usa Docker Compose para producción:**
+   Usaremos el archivo de variables de entorno `env.prod` para la configuración de producción.
+   Si deseas levantar tanto la base de datos como la app en modo producción:
+   ```bash
+   docker-compose -f docker-compose.prod.yaml --env-file env.prod up -d --build
+   ```
+3. **Variables de entorno:**
+   Asegúrate de tener el archivo `.env` o `env.prod` correctamente configurado antes de construir la imagen.
+4. **Acceso a la API:**
+   La API estará disponible en [http://localhost:3000/api/v2](http://localhost:3000/api/v2) por defecto.
+
+Para más detalles revisa los archivos `Dockerfile`, `docker-compose.yml` y `docker-compose.prod.yaml`.
+
+---
+
 ## Endpoints principales
 
 - **GET `/api/v2/pokemons`**: Lista Pokémons (soporta paginación: `limit`, `offset`)
