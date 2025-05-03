@@ -149,6 +149,16 @@ export class ProductsService {
     return result;
   }
 
+  async deleteAllProducts() {
+    const query = this.productRepository.createQueryBuilder('product');
+    try {
+      return await query.delete().where({}).execute();
+    } catch (error) {
+      this.logger.error('Error deleting all products', error);
+      throw new BadRequestException('Error deleting all products');
+    }
+  }
+
   private handleDbExceptions(error: any) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     if (error.code === '23505') {
