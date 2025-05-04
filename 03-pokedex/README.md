@@ -83,6 +83,10 @@ Sigue estos pasos para construir y ejecutar la aplicación en modo producción u
 
 Para más detalles revisa los archivos `Dockerfile`, `docker-compose.yml` y `docker-compose.prod.yaml`.
 
+**Referencia útil:**
+
+- [Gist de buenas prácticas Docker para NestJS por Klerith](https://gist.github.com/Klerith/e7861738c93712840ab3a38674843490)
+
 ---
 
 ## Endpoints principales
