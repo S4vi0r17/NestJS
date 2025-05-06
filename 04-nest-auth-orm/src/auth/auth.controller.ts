@@ -13,6 +13,7 @@ import { GetUser } from './decorators/get-user.decorator';
 import { User } from './entities/user.entity';
 import { RawHeaders } from './decorators/get-raw.decorator';
 import { Request } from 'express';
+import { UserRoleGuard } from './guard/user-role.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -45,7 +46,7 @@ export class AuthController {
 
   @Get('private2')
   @SetMetadata('roles', ['admin', 'superuser'])
-  @UseGuards(AuthGuard())
+  @UseGuards(AuthGuard(), UserRoleGuard)
   testingPrivateRoute2(@GetUser() user: User) {
     return {
       message: 'You are authenticated',
