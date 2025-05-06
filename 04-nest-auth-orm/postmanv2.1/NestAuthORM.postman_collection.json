@@ -1,0 +1,601 @@
+{
+	"info": {
+		"_postman_id": "28a1296a-45e3-481f-a92a-a6bcda97a8a1",
+		"name": "NestAuthORM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31371030"
+	},
+	"item": [
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "create product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBkNDc4ZDliLTliNDctNGVjYS05NDAzLWY4NTcwMzM3MDJmYiIsImlhdCI6MTc0NjU0Mzk2OCwiZXhwIjoxNzQ2NTUxMTY4fQ.p-XSAl6kQ6LyofAN-up1pxm8xoaovxOrB6RrtmJEQPA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Eder's shirt\",\r\n    \"sizes\": [\"SM\", \"M\", \"L\"],\r\n    \"gender\": \"men\",\r\n    \"images\": [\r\n        \"asd.png\",\r\n        \"asd2.png\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/products",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Eder's shirt12\",\r\n    \"sizes\": [\"SM\", \"M\", \"L\"],\r\n    \"gender\": \"men\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/products",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get product by",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/products/Eder's shirt6",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"Eder's shirt6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete product by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/products/94ceb7bd-fa5b-496b-be25-1f8b15629e38",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"94ceb7bd-fa5b-496b-be25-1f8b15629e38"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNkZmQ2NmU2LWQ2MjktNDMyNC04OWViLWVkNDc1YzVlNTBjZSIsImlhdCI6MTc0NjU0NDc1MCwiZXhwIjoxNzQ2NTUxOTUwfQ.Xykksbuoxa-Y2Sz0a4ngsciLfpa3vkR-pqaxidj9C7g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"price\": 111,\r\n    \"tags\": [\"comida\", \"perras\"]\r\n    // \"images\": [\r\n    //     \"image1.png\",\r\n    //     \"image2.pnk\"\r\n    // ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/products/aec42a1a-5691-4afa-9380-458b68691e02",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"aec42a1a-5691-4afa-9380-458b68691e02"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seed",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBkNDc4ZDliLTliNDctNGVjYS05NDAzLWY4NTcwMzM3MDJmYiIsImlhdCI6MTc0NjUwNzU3OCwiZXhwIjoxNzQ2NTE0Nzc4fQ.fgowYbFP8uEQsRzfyj2p7QGZAHttCCXQo8ZldaCRgfY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/seed",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"seed"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "files",
+			"item": [
+				{
+					"name": "upload file",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/GBP17/Desktop/ChatGPT Image Mar 29, 2025, 02_25_25 PM.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/files/product",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"files",
+								"product"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProductImage",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/GBP17/Desktop/uploaded_image.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/files/product/1473809-00-A_1_2000.jpg",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"files",
+								"product",
+								"1473809-00-A_1_2000.jpg"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "test private routes",
+			"item": [
+				{
+					"name": "user and headers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBkNDc4ZDliLTliNDctNGVjYS05NDAzLWY4NTcwMzM3MDJmYiIsImlhdCI6MTc0NjQ5OTMzOSwiZXhwIjoxNzQ2NTA2NTM5fQ.E-rV5BCVB1fgeaSIXmx4Wv7I0y22jwOQLvMpR-tXRXM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/auth/private",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"private"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SetMetadata + UserRoleGuard",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBkNDc4ZDliLTliNDctNGVjYS05NDAzLWY4NTcwMzM3MDJmYiIsImlhdCI6MTc0NjQ5OTMzOSwiZXhwIjoxNzQ2NTA2NTM5fQ.E-rV5BCVB1fgeaSIXmx4Wv7I0y22jwOQLvMpR-tXRXM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/auth/private2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"private2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RoleProtected + UserRoleGuard",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBkNDc4ZDliLTliNDctNGVjYS05NDAzLWY4NTcwMzM3MDJmYiIsImlhdCI6MTc0NjUwNjcwMiwiZXhwIjoxNzQ2NTEzOTAyfQ.H-fQXZF_otKsP-mL0nVaAwS9ycLFAdIg-rizDMKjQMc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/auth/private3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"private3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth Decorator",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBkNDc4ZDliLTliNDctNGVjYS05NDAzLWY4NTcwMzM3MDJmYiIsImlhdCI6MTc0NjUwNjcwMiwiZXhwIjoxNzQ2NTEzOTAyfQ.H-fQXZF_otKsP-mL0nVaAwS9ycLFAdIg-rizDMKjQMc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/auth/private4",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"private4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user Sign Up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"asd2@asd.com\",\r\n    \"password\": \"asdASD123!@#\",\r\n    \"fullName\": \"Pepinga Benites\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/auth/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user Sign In",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTViNmQwMGJmNmM5Yjc5MmZiNDNjYiIsImlhdCI6MTcyMTEwNDYwNSwiZXhwIjoxNzIzNjk2NjA1fQ.T-WJFgczpKvMhtlRgktwWAOrMrSSHPIf4wsWTkop4vo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"asd2@asd.com\",\r\n    \"password\": \"asdASD123!@#\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/auth/signin",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user Check Auth Status",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVlZWU4NDcwLTVmMGItNDkyZi1iN2U0LTczZDY2OGJkZWRmYyIsImlhdCI6MTc0NjU0NjYyMCwiZXhwIjoxNzQ2NTUzODIwfQ.UGhRCZJK1GMIWVZBCwRhrEU8nJQoYaKnzjsQQb8qkQc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"asd@asd.com\",\r\n    \"password\": \"asdASD123!@#\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/auth/check-status",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"check-status"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
