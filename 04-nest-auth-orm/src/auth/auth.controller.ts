@@ -16,6 +16,7 @@ import { Request } from 'express';
 import { UserRoleGuard } from './guard/user-role.guard';
 import { RoleProtected } from './decorators/role-protected.decorator';
 import { ValidRoles } from './interfaces/valid-roles.interface';
+import { Auth } from './decorators/auth.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -67,8 +68,8 @@ export class AuthController {
   }
 
   @Get('private4')
-  @RoleProtected(ValidRoles.admin, ValidRoles.superuser)
-  @UseGuards(AuthGuard(), UserRoleGuard)
+  @Auth(ValidRoles.admin, ValidRoles.superuser)
+  // @Auth() // free access
   testingPrivateRoute4(@GetUser() user: User) {
     return {
       message: 'You are authenticated',
