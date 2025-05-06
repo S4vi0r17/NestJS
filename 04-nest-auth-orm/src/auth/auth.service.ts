@@ -1,23 +1,31 @@
 import {
-  BadRequestException,
   Injectable,
   Logger,
+  BadRequestException,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { JwtService } from '@nestjs/jwt';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+
 import { User } from './entities/user.entity';
 import { CreateUserDto, LoginUserDto } from './dto';
+import { JwtPayload } from './interfaces/jwt-payload.interface';
 
 @Injectable()
 export class AuthService {
+  private readonly logger = new Logger('AuthService');
+
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
+    private readonly jwtService: JwtService,
   ) {}
 
-  private readonly logger = new Logger('AuthService');
+  private generateToken(payload: JwtPayload) {
+    return this.jwtService.sign(payload);
+  }
 
   async signup(createUserDto: CreateUserDto) {
     const { password, ...userData } = createUserDto;
@@ -34,8 +42,8 @@ export class AuthService {
       const { password: __, ...userWithoutPassword } = user;
 
       return {
-        message: 'User signed up successfully',
-        user: userWithoutPassword,
+        ...userWithoutPassword,
+        token: this.generateToken({ id: user.id }),
       };
     } catch (error) {
       this.handleDbExceptions(error);
@@ -48,7 +56,7 @@ export class AuthService {
     try {
       const user = await this.userRepository.findOne({
         where: { email },
-        select: { email: true, password: true },
+        select: { id: true, email: true, password: true },
       });
 
       if (!user) {
@@ -63,8 +71,8 @@ export class AuthService {
       const { password: __, ...userWithoutPassword } = user;
 
       return {
-        message: 'User signed in successfully',
-        user: userWithoutPassword,
+        ...userWithoutPassword,
+        token: this.generateToken({ id: user.id }),
       };
     } catch (error) {
       this.handleDbExceptions(error);
