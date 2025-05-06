@@ -1,8 +1,10 @@
+import { Product } from 'src/products/entities';
 import {
   BeforeInsert,
   BeforeUpdate,
   Column,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -25,6 +27,11 @@ export class User {
 
   @Column('bool', { default: true })
   isActive: boolean;
+
+  @OneToMany(() => Product, (product) => product.user, {
+    cascade: true,
+  })
+  products: Product[];
 
   @BeforeInsert()
   checkFieldsBeforeInsert() {
