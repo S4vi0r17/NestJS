@@ -79,6 +79,16 @@ export class AuthService {
     }
   }
 
+  checkAuthStatus(user: User) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...userWithoutPassword } = user;
+
+    return {
+      ...userWithoutPassword,
+      token: this.generateToken({ id: user.id }),
+    };
+  }
+
   private handleDbExceptions(error: any): never {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     if (error.code === '23505') {
