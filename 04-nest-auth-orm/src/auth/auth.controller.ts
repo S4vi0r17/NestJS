@@ -14,6 +14,8 @@ import { User } from './entities/user.entity';
 import { RawHeaders } from './decorators/get-raw.decorator';
 import { Request } from 'express';
 import { UserRoleGuard } from './guard/user-role.guard';
+import { RoleProtected } from './decorators/role-protected.decorator';
+import { ValidRoles } from './interfaces/valid-roles.interface';
 
 @Controller('auth')
 export class AuthController {
@@ -48,6 +50,26 @@ export class AuthController {
   @SetMetadata('roles', ['admin', 'superuser'])
   @UseGuards(AuthGuard(), UserRoleGuard)
   testingPrivateRoute2(@GetUser() user: User) {
+    return {
+      message: 'You are authenticated',
+      user,
+    };
+  }
+
+  @Get('private3')
+  @RoleProtected(ValidRoles.admin, ValidRoles.superuser)
+  @UseGuards(AuthGuard(), UserRoleGuard)
+  testingPrivateRoute3(@GetUser() user: User) {
+    return {
+      message: 'You are authenticated',
+      user,
+    };
+  }
+
+  @Get('private4')
+  @RoleProtected(ValidRoles.admin, ValidRoles.superuser)
+  @UseGuards(AuthGuard(), UserRoleGuard)
+  testingPrivateRoute4(@GetUser() user: User) {
     return {
       message: 'You are authenticated',
       user,
