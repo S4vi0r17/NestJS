@@ -31,8 +31,8 @@ npm install --global yarn
 Descargar imagen de Mongo 5.0.0 y postgres 14
 
 ```bash
-docker pull mongo:5.0.0
-docker pull postgres:14.3
+docker pull mongo:8.0
+docker pull postgres:17
 ```
 
 ### Instalaciones adicionales
@@ -42,6 +42,13 @@ docker pull postgres:14.3
 - [TypeScript importer](https://marketplace.visualstudio.com/items?itemName=pmneo.tsimporter)
 - [.env](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)
 - [Better Dockerfile](https://marketplace.visualstudio.com/items?itemName=jeff-hykin.better-dockerfile-syntax)
+
+---
+
+## Hojas de Atajo y Recursos Útiles
+
+- [NestJS Cheatsheet (PDF)](https://github.com/Klerith/mas-talento/blob/main/nest/nest-cheatsheet.pdf)
+- [Más hojas de atajo y recursos de otros cursos](https://cursos.devtalles.com/pages/mas-talento)
 
 ---
 
